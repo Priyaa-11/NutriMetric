@@ -52,6 +52,7 @@ export default function App() {
         
         <main style={{ padding: '2rem', flex: 1 }}>
           <Routes>
+            <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Auth onLogin={handleLogin} />} />
             <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Auth onLogin={handleLogin} />} />
             <Route path="/dashboard" element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
             <Route path="*" element={<Navigate to={user ? "/dashboard" : "/login"} />} />
