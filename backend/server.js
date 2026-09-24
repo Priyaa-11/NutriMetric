@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -13,21 +12,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to Database
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/wellnessDB';
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log('MongoDB connection error:', err));
-
-// Use Routes
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/mealplans', mealPlanRoutes);
 app.use('/api/users', userRoutes);
 
-// Basic error handling middleware
+// Basic error handling
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: 'Something went wrong on the server!' });
+    console.error(err.stack);
+    res.status(500).json({
+        message: 'Something went wrong on the server!'
+    });
 });
 
+// Export app for Vercel
 module.exports = app;
