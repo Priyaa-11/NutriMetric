@@ -18,20 +18,6 @@
       }
     },
     {
-      "source": "/login",
-      "destination": {
-        "service": "frontend",
-        "path": "/index.html"
-      }
-    },
-    {
-      "source": "/dashboard",
-      "destination": {
-        "service": "frontend",
-        "path": "/index.html"
-      }
-    },
-    {
       "source": "/(.*)",
       "destination": {
         "service": "frontend"
